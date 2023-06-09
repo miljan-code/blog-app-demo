@@ -10,9 +10,10 @@ export default function Home() {
             A modern blog built using Next 13.4, leveraging server actions and
             Drizzle ORM.
           </p>
+          <hr className="mt-6" />
         </div>
       </section>
-      <section className="py-6 md:py-8">
+      <section className="py-4">
         <div className="container text-center">Blog posts...</div>
       </section>
     </>

@@ -31,6 +31,7 @@ db/migrations
 
 # vercel
 .vercel
+.archive
 
 # typescript
 *.tsbuildinfo
@@ -38,3 +39,4 @@ next-env.d.ts
 
 notes.txt
 .vercel
+backup.ts

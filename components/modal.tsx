@@ -18,12 +18,6 @@ export const Modal = ({ children }: ModalProps) => {
         onClick={e => e.stopPropagation()}
         className="relative max-w-sm w-full"
       >
-        <div
-          onClick={() => router.back()}
-          className="absolute top-3 right-5 text-2xl cursor-pointer"
-        >
-          &times;
-        </div>
         {children}
       </div>
     </div>
