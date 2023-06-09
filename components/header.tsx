@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { auth, currentUser } from '@clerk/nextjs';
+import { currentUser } from '@clerk/nextjs';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { NewPostButton } from '@/components/new-post-button';
