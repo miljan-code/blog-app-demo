@@ -6,7 +6,7 @@ import { ThemeToggle } from '@/components/theme-toggle';
 
 export const Header = () => {
   return (
-    <header className="container py-6 flex items-center justify-between">
+    <header className="px-8 mx-auto max-w-5xl py-6 flex items-center justify-between">
       <Link href="/" className="flex items-center gap-2 w-fit">
         <Icons.logo className="w-6 h-6" />
         <span className="font-semibold">Modern Blog</span>
