@@ -1,12 +1,14 @@
 import Link from 'next/link';
-import { auth } from '@clerk/nextjs';
+import { auth, currentUser } from '@clerk/nextjs';
 import { cn } from '@/lib/utils';
+import { ThemeToggle } from '@/components/theme-toggle';
+import { NewPostButton } from '@/components/new-post-button';
 import { Icons } from '@/components/icons';
 import { buttonVariants } from '@/components/ui/button';
-import { ThemeToggle } from '@/components/theme-toggle';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
-export const Header = () => {
-  const { userId } = auth();
+export const Header = async () => {
+  const user = await currentUser();
 
   return (
     <header className="px-8 mx-auto max-w-5xl py-6 flex items-center justify-between">
@@ -16,13 +18,16 @@ export const Header = () => {
       </Link>
       <div className="flex items-center gap-6">
         <ThemeToggle />
-        {userId ? (
-          <Link
-            href="/posts"
-            className={cn(buttonVariants({ size: 'sm' }), 'px-4')}
-          >
-            New post
-          </Link>
+        {user ? (
+          <>
+            <Link href="/dashboard">
+              <Avatar>
+                <AvatarImage src={user?.profileImageUrl} />
+                <AvatarFallback>{user?.username}</AvatarFallback>
+              </Avatar>
+            </Link>
+            <NewPostButton />
+          </>
         ) : (
           <Link
             href="/login"
