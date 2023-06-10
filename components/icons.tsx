@@ -1,9 +1,20 @@
-import { SunMedium, Moon, Loader2, type LucideProps } from 'lucide-react';
+import {
+  SunMedium,
+  Moon,
+  Loader2,
+  FileText,
+  Settings,
+  Plus,
+  type LucideProps,
+} from 'lucide-react';
 
 export const Icons = {
   sun: SunMedium,
   moon: Moon,
   loader: Loader2,
+  file: FileText,
+  settings: Settings,
+  plus: Plus,
   logo: ({ ...props }: LucideProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" {...props}>
       <path
