@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { siteConfig } from '@/config/site';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Header } from '@/components/header';
+import { Toaster } from '@/components/ui/toaster';
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
 
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Header />
             {children}
+            <Toaster />
           </ThemeProvider>
         </body>
       </html>

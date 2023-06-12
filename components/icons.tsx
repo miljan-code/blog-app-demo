@@ -5,6 +5,9 @@ import {
   FileText,
   Settings,
   Plus,
+  ChevronLeft,
+  MoreVertical,
+  Trash,
   type LucideProps,
 } from 'lucide-react';
 
@@ -15,6 +18,9 @@ export const Icons = {
   file: FileText,
   settings: Settings,
   plus: Plus,
+  chevronLeft: ChevronLeft,
+  more: MoreVertical,
+  trash: Trash,
   logo: ({ ...props }: LucideProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" {...props}>
       <path

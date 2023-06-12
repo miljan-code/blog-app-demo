@@ -7,8 +7,8 @@ export default function Home() {
             Modern blogging experience
           </h1>
           <p className="text-xl text-muted-foreground">
-            A modern blog built using Next 13.4, leveraging server actions and
-            Drizzle ORM.
+            A modern blog built using Next 13.4, Vercel Postgres and Drizzle
+            ORM.
           </p>
           <hr className="mt-6" />
         </div>
