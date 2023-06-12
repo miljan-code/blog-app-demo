@@ -8,8 +8,8 @@
 .dark .cdx-button,
 .dark .ce-popover,
 .dark .ce-toolbar__plus:hover {
-  background: theme('colors.popover.DEFAULT');
-  color: inherit;
+  background: #030711;
+  color: #fff;
   border-color: theme('colors.border');
 }
 
@@ -37,6 +37,20 @@
   background: theme('colors.accent.DEFAULT');
 }
 
+.dark .ce-popover-item__icon {
+  background-color: #030711;
+  box-shadow: none;
+  border: 1px solid #1d283a;
+}
+
+.dark .ce-popover-item {
+  color: #fff !important;
+}
+
+.dark .ce-popover-item:hover {
+  background-color: #1d283a;
+}
+
 .dark .cdx-settings-button:hover,
 .dark .ce-settings__button:hover,
 .dark .ce-toolbox__button--active,
@@ -58,4 +72,10 @@
 .dark .cdx-notify__cross::after,
 .dark .cdx-notify__cross::before {
   background: white;
+}
+
+.dark .ce-code__textarea {
+  background: #1d283a;
+  color: #fff;
+  border: none;
 }

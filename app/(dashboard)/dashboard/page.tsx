@@ -1,5 +1,5 @@
 import { currentUser } from '@clerk/nextjs';
-import { eq } from 'drizzle-orm';
+import { asc, eq } from 'drizzle-orm';
 import { db } from '@/db';
 import { post } from '@/db/schema';
 import { cn } from '@/lib/utils';
@@ -13,7 +13,11 @@ const getPosts = async () => {
 
   if (!user) return null;
 
-  return await db.select().from(post).where(eq(post.author, user.id));
+  return await db
+    .select()
+    .from(post)
+    .where(eq(post.author, user.id))
+    .orderBy(asc(post.createdAt));
 };
 
 const DashboardPage = async () => {

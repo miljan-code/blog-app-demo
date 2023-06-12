@@ -1,12 +1,14 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { FormEvent, useCallback, useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import EditorJS, { type OutputData } from '@editorjs/editorjs';
 import TextareaAutosize from 'react-textarea-autosize';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
+import { toast } from '@/components/ui/use-toast';
 import type { Post } from '@/db/schema';
 import '@/styles/editor.css';
 
@@ -16,6 +18,9 @@ interface EditorProps {
 
 export const Editor = ({ post }: EditorProps) => {
   const editorRef = useRef<EditorJS>();
+  const titleRef = useRef<HTMLTextAreaElement>(null);
+
+  const router = useRouter();
 
   const [isMounted, setIsMounted] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -80,18 +85,51 @@ export const Editor = ({ post }: EditorProps) => {
     return null;
   }
 
-  const handlePatchPost = async () => {};
+  const handlePatchPost = async (e: FormEvent) => {
+    e.preventDefault();
+
+    setIsSaving(true);
+
+    const blocks = await editorRef.current?.save();
+
+    const res = await fetch(`/api/posts/${post.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title: titleRef.current?.value,
+        content: blocks,
+      }),
+    });
+
+    setIsSaving(false);
+
+    if (!res?.ok) {
+      return toast({
+        title: 'Something went wrong.',
+        description: 'Your post was not saved. Please try again.',
+        variant: 'destructive',
+      });
+    }
+
+    router.refresh();
+
+    return toast({
+      description: 'Your post has been saved.',
+    });
+  };
 
   return (
     <form onSubmit={handlePatchPost}>
-      <div className="grid w-full gap-10">
+      <div className="grid w-full gap-10 py-10">
         <div className="prose prose-stone mx-auto max-w-4xl dark:prose-invert">
           <TextareaAutosize
             autoFocus
-            id="title"
             defaultValue={post.title}
             placeholder="Post title"
             className="w-full resize-none appearance-none overflow-hidden bg-transparent text-5xl font-bold focus:outline-none"
+            ref={titleRef}
           />
           <div id="editor" className="min-h-[500px]" />
           <p className="text-sm text-gray-500">
