@@ -8,7 +8,7 @@ import { NewPostButton } from '@/components/new-post-button';
 import { PostItem } from '@/components/post-item';
 import { buttonVariants } from '@/components/ui/button';
 
-const getPosts = async () => {
+const getPostsFromCurrentUser = async () => {
   const user = await currentUser();
 
   if (!user) return null;
@@ -21,7 +21,7 @@ const getPosts = async () => {
 };
 
 const DashboardPage = async () => {
-  const posts = await getPosts();
+  const posts = await getPostsFromCurrentUser();
 
   if (!posts?.length) {
     return (

@@ -1,8 +1,8 @@
 import { currentUser } from '@clerk/nextjs';
 import { and, eq } from 'drizzle-orm';
+import { z } from 'zod';
 import { db } from '@/db';
 import { post } from '@/db/schema';
-import { z } from 'zod';
 
 interface Params {
   postId: string;
@@ -11,6 +11,7 @@ interface Params {
 const postPatchSchema = z.object({
   title: z.string(),
   content: z.any().optional(),
+  coverUrl: z.string().optional(),
 });
 
 export async function DELETE(req: Request, { params }: { params: Params }) {
@@ -47,7 +48,11 @@ export async function PATCH(req: Request, { params }: { params: Params }) {
 
     const updatedPost = await db
       .update(post)
-      .set({ content: body.content, title: body.title })
+      .set({
+        content: body.content,
+        title: body.title,
+        coverUrl: body.coverUrl,
+      })
       .where(and(eq(post.author, user.id), eq(post.id, postId)))
       .returning();
 

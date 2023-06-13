@@ -3,15 +3,15 @@
 import { FormEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import EditorJS, { type OutputData } from '@editorjs/editorjs';
+import EditorJS, { LogLevels, type OutputData } from '@editorjs/editorjs';
 import TextareaAutosize from 'react-textarea-autosize';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
 import { toast } from '@/components/ui/use-toast';
+import { UploadDropzone } from '@/components/upload-dropzone';
 import type { Post } from '@/db/schema';
 import '@/styles/editor.css';
-
 interface EditorProps {
   post: Post;
 }
@@ -24,6 +24,7 @@ export const Editor = ({ post }: EditorProps) => {
 
   const [isMounted, setIsMounted] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [coverUrl, setCoverUrl] = useState<string | null>(post.coverUrl);
 
   const initEditor = useCallback(async () => {
     const EditorJS = (await import('@editorjs/editorjs')).default;
@@ -60,6 +61,7 @@ export const Editor = ({ post }: EditorProps) => {
           table: Table,
           embed: Embed,
         },
+        logLevel: 'ERROR' as LogLevels,
       });
     }
   }, [post]);
@@ -100,6 +102,7 @@ export const Editor = ({ post }: EditorProps) => {
       body: JSON.stringify({
         title: titleRef.current?.value,
         content: blocks,
+        coverUrl,
       }),
     });
 
@@ -124,6 +127,7 @@ export const Editor = ({ post }: EditorProps) => {
     <form onSubmit={handlePatchPost}>
       <div className="grid w-full gap-10 py-10">
         <div className="prose prose-stone mx-auto max-w-4xl dark:prose-invert">
+          <UploadDropzone coverUrl={coverUrl} setCoverUrl={setCoverUrl} />
           <TextareaAutosize
             autoFocus
             defaultValue={post.title}
