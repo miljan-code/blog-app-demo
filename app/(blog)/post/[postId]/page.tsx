@@ -8,7 +8,7 @@ import { db } from '@/db';
 import { post } from '@/db/schema';
 import type { OutputData, OutputBlockData } from '@editorjs/editorjs';
 
-export function renderBlock(block: OutputBlockData) {
+const renderBlock = (block: OutputBlockData) => {
   if (block.type === 'paragraph') {
     return <p>{block.data.text}</p>;
   }
@@ -35,7 +35,7 @@ export function renderBlock(block: OutputBlockData) {
   }
 
   return <span>{block.data.text}</span>;
-}
+};
 
 const getPost = async (postId: number) => {
   return db.select().from(post).where(eq(post.id, postId));
