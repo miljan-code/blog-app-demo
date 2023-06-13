@@ -23,7 +23,14 @@ export const BlogPostItem = async ({
         href={`/post/${id}`}
         className="relative h-64 border-border border rounded-md overflow-hidden mb-1"
       >
-        <Image src={coverUrl || ''} alt={title} fill className="object-cover" />
+        <Image
+          src={coverUrl || ''}
+          alt={title}
+          fill
+          className="object-cover"
+          sizes="99vw"
+          priority
+        />
       </Link>
       <Link href={`/post/${id}`} className="text-2xl font-bold">
         {title}

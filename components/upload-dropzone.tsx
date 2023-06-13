@@ -57,6 +57,7 @@ export const UploadDropzone = ({
           src={coverUrl}
           alt="uploaded pic"
           fill
+          sizes="99vw"
           className="object-cover m-0 rounded-md"
           priority
         />
