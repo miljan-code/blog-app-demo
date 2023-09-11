@@ -13,7 +13,7 @@ export const BlogPostItem = async ({
   id,
   content,
 }: BlogPostItemProps) => {
-  const paragraph = (content as OutputData).blocks.find(
+  const paragraph = (content as OutputData)?.blocks.find(
     block => block.type === 'paragraph'
   )?.data as { text: string };
 
@@ -35,7 +35,7 @@ export const BlogPostItem = async ({
       <Link href={`/post/${id}`} className="text-2xl font-bold">
         {title}
       </Link>
-      <p className="text-muted-foreground">{paragraph.text.slice(0, 90)}...</p>
+      <p className="text-muted-foreground">{paragraph?.text.slice(0, 90)}...</p>
       <span className="text-sm text-muted-foreground">
         {format(new Date(createdAt!), 'dd. MMM yyyy')}
       </span>

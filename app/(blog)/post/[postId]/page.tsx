@@ -55,7 +55,7 @@ const PostPage = async ({ params }: PostPageProps) => {
     notFound();
   }
 
-  const { blocks } = post.content as OutputData;
+  const blocks = (post.content as OutputData)?.blocks;
 
   return (
     <section className="py-6 md:py-8 lg:py-12">
@@ -93,9 +93,10 @@ const PostPage = async ({ params }: PostPageProps) => {
           />
         </div>
         <div className="flex flex-col gap-3">
-          {blocks.map(block => (
-            <Fragment key={block.id}>{renderBlock(block)}</Fragment>
-          ))}
+          {blocks &&
+            blocks.map(block => (
+              <Fragment key={block.id}>{renderBlock(block)}</Fragment>
+            ))}
         </div>
       </div>
     </section>

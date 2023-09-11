@@ -7,6 +7,8 @@
 .dark .ce-toolbar__settings-btn,
 .dark .cdx-button,
 .dark .ce-popover,
+.dark .tc-popover,
+.dark .tc-popover--opened,
 .dark .ce-toolbar__plus:hover {
   background: #030711;
   color: #fff;
@@ -37,7 +39,8 @@
   background: theme('colors.accent.DEFAULT');
 }
 
-.dark .ce-popover-item__icon {
+.dark .ce-popover-item__icon,
+.dark .tc-popover__item-icon {
   background-color: #030711;
   box-shadow: none;
   border: 1px solid #1d283a;
