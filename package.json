@@ -11,7 +11,7 @@
     "migrate": "node -r esbuild-register db/migrate.ts"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.19.1",
+    "@clerk/nextjs": "^4.29.3",
     "@editorjs/code": "^2.8.0",
     "@editorjs/editorjs": "^2.27.0",
     "@editorjs/embed": "^2.5.3",
